@@ -13,4 +13,8 @@ class SessionsController < ApplicationController
   		flash.now[:success] = "hola"
   	end
   end
+
+  def delete
+    sign_out
+  end
 end

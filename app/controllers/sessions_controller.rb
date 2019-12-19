@@ -4,13 +4,16 @@ class SessionsController < ApplicationController
 
   def create
   	#user = User.find_by(email: params[:email])
-  	user = User.find_by_email(params[:email])
-  	if(user &.authenticate(params[:password]))
+  	user = User.find_by(email: params[:session][:email])
+  	if(user &.authenticate(params[:session][:password]))
+      flash.now[:success] = "Welcome"
+      redirect_to posts_path
   		sign_in(user)
-  		redirect_to user
-  		flash[:success] = "Welcome"
+  		
+  		
   	else
-  		flash.now[:success] = "hola"
+  		flash.now[:success] = "Invalid email or password"
+      render "new"
   	end
   end
 

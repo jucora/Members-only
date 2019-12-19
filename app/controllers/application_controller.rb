@@ -14,10 +14,13 @@ class ApplicationController < ActionController::Base
 
 	def sign_out
 		@current_user = nil
-		cookies[:remember_token].delete
+		cookies.delete(:remember_token)
+		redirect_to posts_path
 	end
 
 	def user_signed_in?
 		return true if current_user.present?
 	end
+
+	helper_method :current_user, :user_signed_in?
 end

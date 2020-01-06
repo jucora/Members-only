@@ -8,15 +8,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
- 
-
   <body>
     <div class="container">
       <%= render "share/header" %>
-      <% flash.each do |message| %>
+      <% flash.each do |key, message| %>
         <%= message %>
-        <% end %>
+      <% end %>
       <%= yield %>
     </div>
     <%= render "share/footer" %>

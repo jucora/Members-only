@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.paginate(page: params[:page], per_page: 10)
+  end
+
   def new
     @user = User.new
   end
@@ -6,11 +10,11 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
-      redirect_to @user
-      flash.now[:success] = 'User created'
+      redirect_to users_path
+      flash[:success] = 'User created'
     else
       redirect_to new_user_path
-      flash.now[:alert] = 'You have errors'
+      flash[:alert] = 'You have errors'
     end
   end
 

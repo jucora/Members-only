@@ -1,0 +1,10 @@
+<h1>Community</h1>
+<br>
+<%= will_paginate %>
+<ul class="users">
+  <% @users.each do |user| %>
+  	<h3><%= user.name %></h3>
+  	<br>
+  <% end %>
+</ul>
+<%= will_paginate %>	

@@ -28,6 +28,9 @@ class PostsController < ApplicationController
   end
 
   def member?
-		current_user
+    if !user_signed_in?
+      redirect_to root_path
+      flash[:alert] = 'Please Sign In!'
+    end
 	end
 end

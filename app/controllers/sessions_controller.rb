@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :logged_in?, only: :new
   def new
   end
 
@@ -8,8 +9,6 @@ class SessionsController < ApplicationController
       flash.now[:success] = "Welcome"
       redirect_to posts_path
   		sign_in(user)
-  		
-  		
   	else
   		flash.now[:success] = "Invalid email or password"
       render "new"
@@ -18,5 +17,11 @@ class SessionsController < ApplicationController
 
   def delete
     sign_out
+  end
+
+  def logged_in?
+    if user_signed_in?
+      redirect_to users_path
+    end
   end
 end
